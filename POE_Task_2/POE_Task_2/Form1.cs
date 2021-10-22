@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace POE_Task1
+namespace POE_Task_2
 {
     public partial class Form1 : Form
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace POE_Task1
+namespace POE_Task_2
 {
     static class Program
     {

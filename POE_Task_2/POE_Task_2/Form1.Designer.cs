@@ -1,5 +1,5 @@
 ﻿
-namespace POE_Task1
+namespace POE_Task_2
 {
     partial class Form1
     {

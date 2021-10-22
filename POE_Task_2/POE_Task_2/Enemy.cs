@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace POE_Task1
+namespace POE_Task_2
 {
     public abstract class Enemy : Character
     {
