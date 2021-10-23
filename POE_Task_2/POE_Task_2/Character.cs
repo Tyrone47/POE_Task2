@@ -80,7 +80,8 @@ namespace POE_Task_2
            
         }
 
-        public Character (int xPos , int yPos , string symbol) : base(xPos, yPos) {
+        public Character (int xPos , int yPos , string symbol) : base(xPos, yPos)
+        {
             this.symbol = symbol;
             this.characterVision = new Tile[4];
         }
@@ -96,13 +97,18 @@ namespace POE_Task_2
 
         public virtual bool CheckRange(Character target)
         {
+            int distance = this.DistanceTo(target);
+            if (distance == 1)
+            {
+                return true;
+            } 
             return false;//To implement
 
         }
 
-        private int DistanceTo(Character target)
+        protected int DistanceTo(Character target)
         {
-            return 0;//To implement
+            return Math.Abs(this.x - target.x) + Math.Abs(this.y - target.y);//To implement
         }
         public void Move(MovementEnum move)
         {
