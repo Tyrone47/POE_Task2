@@ -15,9 +15,16 @@ namespace POE_Task_2
         public Form1()
         {
             InitializeComponent();
+            GameEngine gameEngine = new GameEngine(20, 20, 20, 20, 3, 5);
+            txtDisplayGame.Text = gameEngine.ToString();
         }
 
         private void btnUp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

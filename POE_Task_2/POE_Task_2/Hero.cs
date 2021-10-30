@@ -4,7 +4,7 @@ using System.Text;
 
 namespace POE_Task_2
 {
-    class Hero : Character
+    public class Hero : Character
     {
         
         public Hero(int x, int y, int hP, string symbol) : base(x, y,symbol )

@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace POE_Task_2
 {
-    class Map
+    public class Map
     {
         private Tile[,] tileMap;
 
         private Hero hero;
 
         private Enemy[] enemyArray;
+
+        private Item[] items;
 
         private int width;
 
@@ -30,17 +33,26 @@ namespace POE_Task_2
             get { return this.height; }
             set { this.height = value; }
         }
-      
+       public Hero GetHero()
+        {
+            return this.hero;
+        }
+
+        public void placeTileOnMap(Tile tile)
+        {
+            this.tileMap[tile.getX(), tile.getY()] = tile;
+        }
+        
 
 
-
-        public Map( int minWidth , int maxWidth, int minHeight , int maxHeight , int numOfEnemies)
+        public Map( int minWidth , int maxWidth, int minHeight , int maxHeight , int numOfEnemies , int goldDrops)
         {
             this.random = new Random();
 
             this.height = this.random.Next(minHeight, maxHeight + 1);
             this.width = this.random.Next(minWidth, maxWidth + 1);
             this.tileMap = new Tile[this.width,this.height];
+            
 
             //This fills up the left side of the boarder Only.
 
@@ -74,9 +86,9 @@ namespace POE_Task_2
             }
 
             //This fills up the rest of the map with empty tiles
-            for (int i = 1; i < this.width - 2; i++)
+            for (int i = 1; i < this.width - 1; i++)
             {
-                for (int j = 1; j < this.height - 2; j++)
+                for (int j = 1; j < this.height - 1; j++)
                 {
                     EmptyTile emptyTile = new EmptyTile(i, j);
                     this.tileMap[i, j] = emptyTile;              
@@ -89,9 +101,27 @@ namespace POE_Task_2
             //Creates enemies in the class.
             
             this.enemyArray = new Enemy[numOfEnemies];
+            
             for (int i = 0; i < numOfEnemies; i++)
             {
-                this.enemyArray[i] = (Enemy)this.Create(TileType.Enemy);
+                int choice = this.random.Next(0, 2);// 0 = Goblin , 1 = Mage , 2 = Gold. 
+                    //These represent the enemy types called at random
+                if (choice == 0)
+                {
+                    this.enemyArray[i] = (Enemy)this.Create(TileType.Goblin);
+                }
+                else  
+                {
+                    this.enemyArray[i] = (Enemy)this.Create(TileType.Mage);
+                }
+                
+            }
+            //populets the Item array with the parameter
+            this.items = new Item[goldDrops];
+
+            for (int i = 0; i < goldDrops; i++)
+            {
+                this.items[i] = (Gold)this.Create(TileType.Gold);
             }
 
         }
@@ -132,32 +162,119 @@ namespace POE_Task_2
         {
             if (tileType == TileType.Hero)
             {
-                int x = this.random.Next(1, this.width - 2);
-                int y = this.random.Next(1, this.height - 2);
-                while (!this.tileMap[x,y].Equals( new EmptyTile(x,y)))
+                bool isHeroAssigned = false;
+                Hero tempHero = null;
+                
+                while (!isHeroAssigned )
                 {
-                     x = this.random.Next(1, this.width - 2);
-                     y = this.random.Next(1, this.height - 2);
+                    
+                    int x = this.random.Next(1, this.width - 2);
+                    int y = this.random.Next(1, this.height - 2);
+                    if (this.tileMap[x, y].Equals (new EmptyTile(x, y)))
+                    {
+                        tempHero = new Hero(x, y, 3, "H");
+                        this.tileMap[x, y] = tempHero;
+                        isHeroAssigned = true;
+                    }
+                    
+                    
                 }
-                Hero hero = new Hero(x, y, 3, "H");
-                this.tileMap[x, y] = hero;
-                return hero;
+                
+                return tempHero;
             }
-            else if (tileType == TileType.Enemy)
+            else if (tileType == TileType.Goblin)
             {
-                int x = this.random.Next(1, this.width - 2);
-                int y = this.random.Next(1, this.height - 2);
-                while (!this.tileMap[x, y].Equals(new EmptyTile(x, y)))
+                bool isGoblinAssigned = false;
+                Goblin tempGoblin = null;
+
+                while (!isGoblinAssigned)
                 {
-                    x = this.random.Next(1, this.width - 2);
-                    y = this.random.Next(1, this.height - 2);
+
+                    int x = this.random.Next(1, this.width - 2);
+                    int y = this.random.Next(1, this.height - 2);
+                    if (this.tileMap[x, y].Equals(new EmptyTile(x, y)))
+                    {
+                        tempGoblin = new Goblin(x, y);
+                        this.tileMap[x, y] = tempGoblin;
+                        isGoblinAssigned = true;
+                    }
+
+
                 }
-                Enemy goblin = new Goblin(x, y);
-                this.tileMap[x, y] = goblin;
-                return goblin;
+
+                return tempGoblin;
 
             }
+            else if (tileType == TileType.Mage)
+            {
+                bool isMageAssigned = false;
+                Mage tempMage = null;
+
+                while (!isMageAssigned)
+                {
+
+                    int x = this.random.Next(1, this.width - 2);
+                    int y = this.random.Next(1, this.height - 2);
+                    if (this.tileMap[x, y].Equals(new EmptyTile(x, y)))
+                    {
+                        tempMage = new Mage(x, y);
+                        this.tileMap[x, y] = tempMage;
+                        isMageAssigned = true;
+                    }
+
+
+                }
+
+                return tempMage;
+
+            }
+            if (tileType == TileType.Gold)
+            {
+
+                bool isGoldAssigned = false;
+                Gold tempGold = null;
+
+                while (!isGoldAssigned)
+                {
+
+                    int x = this.random.Next(1, this.width - 2);
+                    int y = this.random.Next(1, this.height - 2);
+                    if (this.tileMap[x, y].Equals(new EmptyTile(x, y)))
+                    {
+                        tempGold = new Gold(x, y);
+                        this.tileMap[x, y] = tempGold;
+                        isGoldAssigned = true;
+                    }
+
+
+                }
+
+                return tempGold;
+                
+            }
             return new EmptyTile(0,0);
+
+            
+        }
+        public override string ToString()
+        {
+            string mapView = "";
+
+            for (int i = 0; i < this.width; i++)
+            {
+                for (int j = 0; j < this.height; j++)
+                {                
+                    mapView +=  " " +  this.tileMap[i, j].GetSymbol();
+
+                }
+                
+                mapView += System.Environment.NewLine;
+
+            }
+
+            return mapView;
+
+
         }
     }
 }

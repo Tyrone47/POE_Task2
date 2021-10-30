@@ -10,6 +10,8 @@ namespace POE_Task_2
         Enemy,
         Gold,
         Weapon,
+        Goblin,
+        Mage
     }
 
     /// <summary>
@@ -47,14 +49,27 @@ namespace POE_Task_2
         }
 
 
-        protected string symbol { get; set; }
-        
+        protected string symbol;
+
+        public string GetSymbol()
+        {
+            return this.symbol;
+        }
+        public void SetSymbol(string symbol)
+        {
+            this.symbol = symbol;
+        }
 
         public Tile(int xAxis, int yAxis)
         {
             this.x = xAxis;
-            this.x = yAxis;          
-            this.symbol = "";
-        }  
+            this.y = yAxis;          
+            
+        }
+        public override bool Equals(Object obj)
+        {
+            Tile tile = obj as Tile;
+            return   this.x == tile.x && this.y == tile.y && this.symbol == tile.symbol;
+        }
     }
 }

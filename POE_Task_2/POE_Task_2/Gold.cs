@@ -9,6 +9,7 @@ namespace POE_Task_2
 
         private int goldAmmount;
         private Random random;
+        
 
 
 
@@ -23,7 +24,7 @@ namespace POE_Task_2
         {
             this.random = new Random();
             this.goldAmmount = this.random.Next(1, 6);
-            
+            this.symbol = "0";//Represents Gold in game
         
         }
         public override string ToString()
