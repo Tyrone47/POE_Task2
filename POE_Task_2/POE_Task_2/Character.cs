@@ -4,6 +4,7 @@ using System.Text;
 
 namespace POE_Task_2
 {
+    
     public enum MovementEnum
     {
         NOMOVEMENT,
@@ -22,7 +23,22 @@ namespace POE_Task_2
     }
     public abstract class Character : Tile
     {
+        private int goldPurse; 
 
+        public int GetGoldPurse()
+        {
+            return this.goldPurse;
+        }
+
+        public void SetGoldPurse(int goldBag)
+        {
+            this.goldPurse = goldBag;
+        }
+
+        public void IncrementGoldAmmount(int goldAmmount)
+        {
+            this.goldPurse += goldAmmount;
+        }
 
         protected int HP;
         protected int maxHP;
@@ -69,10 +85,10 @@ namespace POE_Task_2
 
         public void  SetCharacterVision(Tile tile,int position)
         {
-            //0 Represents THe North side,
-            //1 is the south,
-            //2 is tnhe east and
-            //west is 3
+            //0 Represents ------> UP,
+            //1 Represents ------> DOWN,
+            //2 Represents ------> RIGHT
+            //3 Represemts ------> LEFT
             if ( 0 <= position && position <= this.characterVision.Length - 1)
             {
                 this.characterVision[position] = tile;
@@ -84,6 +100,7 @@ namespace POE_Task_2
         {
             this.symbol = symbol;
             this.characterVision = new Tile[4];
+            this.goldPurse = 0;
         }
 
         public virtual void Attack(Character target) { }
@@ -138,9 +155,16 @@ namespace POE_Task_2
 
         public abstract MovementEnum ReturnMove(MovementEnum move = 0);
         
-
-        
         public abstract override string ToString();
+
+        public void Pickup (Item i)
+        {
+            if (i.GetType() == typeof(Gold))
+            {
+                Gold g = (Gold)i;
+                this.IncrementGoldAmmount(g.GetGoldAmmount());
+            }
+        }
 
     }
 }

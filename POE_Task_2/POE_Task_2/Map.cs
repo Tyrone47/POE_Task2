@@ -123,7 +123,7 @@ namespace POE_Task_2
             {
                 this.items[i] = (Gold)this.Create(TileType.Gold);
             }
-
+            this.UpdateVision();
         }
         
         public void UpdateVision()
@@ -132,28 +132,29 @@ namespace POE_Task_2
             int yPos = this.hero.getY();
 
             //update vision of hero
+            //Up
             this.hero.SetCharacterVision(this.tileMap[xPos, yPos + 1], 0);
-            //South
+            //Down
             this.hero.SetCharacterVision(this.tileMap[xPos, yPos - 1], 1);
-            //East
-            this.hero.SetCharacterVision(this.tileMap[xPos + 1, yPos], 2);
-            //West
-            this.hero.SetCharacterVision(this.tileMap[xPos - 1, yPos], 3);
+            //Left
+            this.hero.SetCharacterVision(this.tileMap[xPos - 1, yPos], 2);
+            //Right
+            this.hero.SetCharacterVision(this.tileMap[xPos + 1, yPos], 3);
 
             //update enemy vision
             for (int i = 0; i < this.enemyArray.Length; i++)
             {
                  xPos = this.enemyArray[i].getX();
-                 yPos = this.enemyArray[i].getY() ;
+                 yPos = this.enemyArray[i].getY();
 
-                //North
+                //Up
                 this.enemyArray[i].SetCharacterVision(this.tileMap[xPos, yPos + 1], 0);
-                //South
+                //Down
                 this.enemyArray[i].SetCharacterVision(this.tileMap[xPos, yPos - 1], 1);
-                //East
-                this.enemyArray[i].SetCharacterVision(this.tileMap[xPos + 1, yPos ], 2);
-                //West
-                this.enemyArray[i].SetCharacterVision(this.tileMap[xPos - 1, yPos], 3);
+                //Left
+                this.enemyArray[i].SetCharacterVision(this.tileMap[xPos - 1, yPos ], 2);
+                //Right
+                this.enemyArray[i].SetCharacterVision(this.tileMap[xPos + 1, yPos], 3);
             }
             
         }
@@ -276,5 +277,24 @@ namespace POE_Task_2
 
 
         }
+        public Item GetItemAtPosition(int x, int y)
+        {
+            if (x < 0 || x >= this.width || y < 0 || y >= this.height)
+            {
+                throw new IndexOutOfRangeException("Trying to acess Tilemap out of range. Not accepted.");
+            }
+            Tile tile = this.tileMap[x, y];
+            
+            for (int i = 0; i < this.items.Length; i++)
+            {
+                if (tile.Equals(this.items[i]))
+                {
+                    return this.items[i];
+                }
+            }
+
+            return null;
     }
+    }
+    
 }

@@ -69,7 +69,7 @@ namespace POE_Task_2
         public override bool Equals(Object obj)
         {
             Tile tile = obj as Tile;
-            return   this.x == tile.x && this.y == tile.y && this.symbol == tile.symbol;
+            return this.x == tile.x && this.y == tile.y && this.symbol == tile.symbol;
         }
     }
 }

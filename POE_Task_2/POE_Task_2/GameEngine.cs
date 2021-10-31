@@ -25,10 +25,18 @@ namespace POE_Task_2
 
                
             MovementEnum move = this.map.GetHero().ReturnMove(direction);
-            if (move == MovementEnum.UP)
+            if (move == MovementEnum.UP )
             {
                 int currentX = hero.getX();
                 int currentY= hero.getY();
+                
+               
+                if (hero.GetCharacterVision()[0].Equals(new Gold(currentX, currentY + 1)))
+                {
+                    Gold tempGold = (Gold)hero.GetCharacterVision()[0];
+                    hero.IncrementGoldAmmount(tempGold.GetGoldAmmount());
+
+                }
                 hero.setY(currentY + 1);
                 this.map.placeTileOnMap(hero);
                 EmptyTile emptyTile = new EmptyTile(currentX, currentY);
@@ -40,6 +48,12 @@ namespace POE_Task_2
             {
                 int currentX = hero.getX();
                 int currentY = hero.getY();
+
+                if (hero.GetCharacterVision()[1].Equals(new Gold(currentX,currentY - 1)))
+                {
+                    Gold tempGold = (Gold)hero.GetCharacterVision()[0];
+                    hero.IncrementGoldAmmount(tempGold.GetGoldAmmount());
+                }
                 hero.setY(currentY - 1);
                 this.map.placeTileOnMap(hero);
                 EmptyTile emptyTile = new EmptyTile(currentX, currentY);
@@ -51,6 +65,12 @@ namespace POE_Task_2
             {
                 int currentX = hero.getX();
                 int currentY = hero.getY();
+
+                if (hero.GetCharacterVision()[2].Equals(new Gold(currentX - 1, currentY)))
+                {
+                    Gold tempGold = (Gold)hero.GetCharacterVision()[2];
+                    hero.IncrementGoldAmmount(tempGold.GetGoldAmmount());
+                }
                 hero.setX(currentX - 1);
                 this.map.placeTileOnMap(hero);
                 EmptyTile emptyTile = new EmptyTile(currentX, currentY);
@@ -62,6 +82,12 @@ namespace POE_Task_2
             {
                 int currentX = hero.getX();
                 int currentY = hero.getY();
+
+                if(hero.GetCharacterVision()[3].Equals(new Gold(currentX + 1, currentY )))
+                {
+                    Gold tempGold = (Gold)hero.GetCharacterVision()[3];
+                    hero.IncrementGoldAmmount(tempGold.GetGoldAmmount());
+                }
                 hero.setX(currentX + 1);
                 this.map.placeTileOnMap(hero);
                 EmptyTile emptyTile = new EmptyTile(currentX, currentY);

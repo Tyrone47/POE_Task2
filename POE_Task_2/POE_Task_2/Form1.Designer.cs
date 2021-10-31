@@ -34,6 +34,7 @@ namespace POE_Task_2
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.txtDisplayGame = new System.Windows.Forms.TextBox();
+            this.txtPlayerStats = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnUp
@@ -54,6 +55,7 @@ namespace POE_Task_2
             this.btnDown.TabIndex = 4;
             this.btnDown.Text = "V";
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnLeft
             // 
@@ -63,6 +65,7 @@ namespace POE_Task_2
             this.btnLeft.TabIndex = 5;
             this.btnLeft.Text = "<";
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
             // 
@@ -72,6 +75,7 @@ namespace POE_Task_2
             this.btnRight.TabIndex = 6;
             this.btnRight.Text = ">";
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // txtDisplayGame
             // 
@@ -81,11 +85,20 @@ namespace POE_Task_2
             this.txtDisplayGame.Size = new System.Drawing.Size(548, 574);
             this.txtDisplayGame.TabIndex = 7;
             // 
+            // txtPlayerStats
+            // 
+            this.txtPlayerStats.Location = new System.Drawing.Point(761, 12);
+            this.txtPlayerStats.Multiline = true;
+            this.txtPlayerStats.Name = "txtPlayerStats";
+            this.txtPlayerStats.Size = new System.Drawing.Size(194, 163);
+            this.txtPlayerStats.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1011, 589);
+            this.Controls.Add(this.txtPlayerStats);
             this.Controls.Add(this.txtDisplayGame);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnLeft);
@@ -105,6 +118,7 @@ namespace POE_Task_2
         private System.Windows.Forms.Button btnLeft;
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.TextBox txtDisplayGame;
+        private System.Windows.Forms.TextBox txtPlayerStats;
     }
 }
 
