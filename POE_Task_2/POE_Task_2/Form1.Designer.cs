@@ -35,45 +35,46 @@ namespace POE_Task_2
             this.btnRight = new System.Windows.Forms.Button();
             this.txtDisplayGame = new System.Windows.Forms.TextBox();
             this.txtPlayerStats = new System.Windows.Forms.TextBox();
+            this.txtEnemyStats = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(761, 477);
+            this.btnUp.Location = new System.Drawing.Point(845, 480);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(94, 38);
+            this.btnUp.Size = new System.Drawing.Size(101, 41);
             this.btnUp.TabIndex = 3;
-            this.btnUp.Text = "^";
+            this.btnUp.Text = "Move Right";
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(761, 539);
+            this.btnDown.Location = new System.Drawing.Point(634, 489);
             this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(94, 29);
+            this.btnDown.Size = new System.Drawing.Size(101, 41);
             this.btnDown.TabIndex = 4;
-            this.btnDown.Text = "V";
+            this.btnDown.Text = "Move Left";
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(661, 510);
+            this.btnLeft.Location = new System.Drawing.Point(738, 442);
             this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(94, 29);
+            this.btnLeft.Size = new System.Drawing.Size(101, 41);
             this.btnLeft.TabIndex = 5;
-            this.btnLeft.Text = "<";
+            this.btnLeft.Text = "Move Up";
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(861, 510);
+            this.btnRight.Location = new System.Drawing.Point(738, 533);
             this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(94, 29);
+            this.btnRight.Size = new System.Drawing.Size(101, 41);
             this.btnRight.TabIndex = 6;
-            this.btnRight.Text = ">";
+            this.btnRight.Text = "Move Down";
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
@@ -87,17 +88,26 @@ namespace POE_Task_2
             // 
             // txtPlayerStats
             // 
-            this.txtPlayerStats.Location = new System.Drawing.Point(761, 12);
+            this.txtPlayerStats.Location = new System.Drawing.Point(566, 12);
             this.txtPlayerStats.Multiline = true;
             this.txtPlayerStats.Name = "txtPlayerStats";
             this.txtPlayerStats.Size = new System.Drawing.Size(194, 163);
             this.txtPlayerStats.TabIndex = 8;
             // 
+            // txtEnemyStats
+            // 
+            this.txtEnemyStats.Location = new System.Drawing.Point(785, 12);
+            this.txtEnemyStats.Multiline = true;
+            this.txtEnemyStats.Name = "txtEnemyStats";
+            this.txtEnemyStats.Size = new System.Drawing.Size(416, 163);
+            this.txtEnemyStats.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 589);
+            this.ClientSize = new System.Drawing.Size(1213, 662);
+            this.Controls.Add(this.txtEnemyStats);
             this.Controls.Add(this.txtPlayerStats);
             this.Controls.Add(this.txtDisplayGame);
             this.Controls.Add(this.btnRight);
@@ -119,6 +129,7 @@ namespace POE_Task_2
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.TextBox txtDisplayGame;
         private System.Windows.Forms.TextBox txtPlayerStats;
+        private System.Windows.Forms.TextBox txtEnemyStats;
     }
 }
 

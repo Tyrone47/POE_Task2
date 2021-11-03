@@ -35,7 +35,7 @@ namespace POE_Task_2
              **/
 
 
-            if (target.GetType() == typeof(Enemy))
+            if (target.GetType() == typeof(Enemy) || target.GetType() == typeof(Hero))
             {
                 int distance = this.DistanceTo(target);
                 if (distance == 1 || distance == 2)
@@ -44,6 +44,18 @@ namespace POE_Task_2
                 }
             }
             return false;
+        }
+        public override void Attack(Character target)
+        {
+            if (this.CheckRange(target))
+            {
+                target.SetHP(target.GetHP() - 5);
+            }
+        }
+
+        public override string ToString()
+        {
+            return typeof(Mage).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
         }
     }
 }

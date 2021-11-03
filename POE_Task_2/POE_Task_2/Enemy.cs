@@ -16,7 +16,7 @@ namespace POE_Task_2
         }
         public override string ToString()
         {
-            return typeof(Enemy).Name + " at[ " + this.x + "," + this.y + "] (Amount + " + this.damage + ")";
+            return typeof(Enemy).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
         }
     }
 }

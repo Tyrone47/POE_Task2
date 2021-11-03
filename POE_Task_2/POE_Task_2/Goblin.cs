@@ -49,5 +49,17 @@ namespace POE_Task_2
             return movement;
              
         }
+        public override void Attack(Character target)
+        {
+            if (this.CheckRange(target))
+            {
+                target.SetHP(target.GetHP() - 1);
+            }
+        }
+
+        public override string ToString()
+        {
+            return typeof(Goblin).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
+        }
     }
 }

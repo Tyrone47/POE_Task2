@@ -21,6 +21,11 @@ namespace POE_Task_2
 
         private  Random random;
 
+        public Enemy[] GetEnemyArray()
+        {
+            return this.enemyArray;
+        }
+
         public int Width
         {
             get { return this.width; }

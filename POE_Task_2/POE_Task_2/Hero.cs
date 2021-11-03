@@ -48,6 +48,15 @@ namespace POE_Task_2
                 return move;
             }
             return MovementEnum.NOMOVEMENT;
+        
+        }
+
+        public override void Attack(Character target)
+        {
+            if (this.CheckRange(target))
+            {
+                target.SetHP(target.GetHP() - 1);
+            }
         }
 
         public override string ToString()

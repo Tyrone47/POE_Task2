@@ -109,7 +109,7 @@ namespace POE_Task_2
         public bool isDead ()
         {
             
-            return false;
+            return this.HP == 0;
         }
 
         public virtual bool CheckRange(Character target)
@@ -119,7 +119,7 @@ namespace POE_Task_2
             {
                 return true;
             } 
-            return false;//To implement
+            return false;
 
         }
 

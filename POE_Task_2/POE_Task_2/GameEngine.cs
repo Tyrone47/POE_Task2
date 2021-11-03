@@ -51,7 +51,7 @@ namespace POE_Task_2
 
                 if (hero.GetCharacterVision()[1].Equals(new Gold(currentX,currentY - 1)))
                 {
-                    Gold tempGold = (Gold)hero.GetCharacterVision()[0];
+                    Gold tempGold = (Gold)hero.GetCharacterVision()[1];
                     hero.IncrementGoldAmmount(tempGold.GetGoldAmmount());
                 }
                 hero.setY(currentY - 1);
@@ -102,6 +102,75 @@ namespace POE_Task_2
             
             return this.map.ToString(); 
         }
+        private void MoveEnemy(Goblin goblin , MovementEnum direction)
+        {
+            MovementEnum move = this.map.GetHero().ReturnMove(direction);
+            if (move == MovementEnum.UP)
+            {
+                int currentX = goblin.getX();
+                int currentY = goblin.getY();
+                goblin.setY(currentY + 1);
+                this.map.placeTileOnMap(goblin);
+                EmptyTile emptyTile = new EmptyTile(currentX, currentY);
+                this.map.placeTileOnMap(emptyTile);
+                this.map.UpdateVision();
+            }
+            else if (move == MovementEnum.DOWN)
+            {
+                int currentX = goblin.getX();
+                int currentY = goblin.getY();
+                goblin.setY(currentY - 1);
+                this.map.placeTileOnMap(goblin);
+                EmptyTile emptyTile = new EmptyTile(currentX, currentY);
+                this.map.placeTileOnMap(emptyTile);
+                this.map.UpdateVision();
+            }
+            else if (move == MovementEnum.LEFT)
+            {
+                int currentX = goblin.getX();
+                int currentY = goblin.getY();           
+                goblin.setX(currentX - 1);
+                this.map.placeTileOnMap(goblin);
+                EmptyTile emptyTile = new EmptyTile(currentX, currentY);
+                this.map.placeTileOnMap(emptyTile);
+                this.map.UpdateVision();   
+            }
+            else if (move == MovementEnum.RIGHT)
+            {
+                int currentX = goblin.getX();
+                int currentY = goblin.getY();
+                goblin.setX(currentX + 1);
+                this.map.placeTileOnMap(goblin);
+                EmptyTile emptyTile = new EmptyTile(currentX, currentY);
+                this.map.placeTileOnMap(emptyTile);
+                this.map.UpdateVision();      
+            }    
+        }
+        public void MoveEnemies()
+        {
+            
+            for (int i = 0; i < this.map.GetEnemyArray().Length; i++)
+            {
+                if (this.map.GetEnemyArray()[i].GetType() == typeof(Goblin))
+                {
+                    Random randomMove = new Random();
+                    MovementEnum  move = (MovementEnum)randomMove.Next(0, 5);
 
+                    this.MoveEnemy((Goblin)this.map.GetEnemyArray()[i], move);
+                }
+            }
+        }
+        public void EnemyAttack()
+        {
+         
+            for (int i = 0; i < this.map.GetEnemyArray().Length; i++)
+            {
+                for (int j = 0; j < this.map.GetEnemyArray()[i].GetCharacterVision().Length; j++)
+                {
+                    Character target = (Character)this.map.GetEnemyArray()[i].GetCharacterVision()[j];
+                    this.map.GetEnemyArray()[i].Attack(target);
+                }   
+            }
+        }
     }
 }

@@ -12,3 +12,4 @@ C:\Users\Tyrone the 4th\source\repos\POE_Task2\POE_Task_2\POE_Task_2\obj\Debug\n
 C:\Users\Tyrone the 4th\source\repos\POE_Task2\POE_Task_2\POE_Task_2\obj\Debug\netcoreapp3.1\POE_Task_2.dll
 C:\Users\Tyrone the 4th\source\repos\POE_Task2\POE_Task_2\POE_Task_2\obj\Debug\netcoreapp3.1\POE_Task_2.pdb
 C:\Users\Tyrone the 4th\source\repos\POE_Task2\POE_Task_2\POE_Task_2\obj\Debug\netcoreapp3.1\POE_Task_2.genruntimeconfig.cache
+C:\Users\Tyrone the 4th\source\repos\POE_Task2\POE_Task_2\POE_Task_2\obj\Debug\netcoreapp3.1\POE_Task_2.csproj.AssemblyReference.cache
