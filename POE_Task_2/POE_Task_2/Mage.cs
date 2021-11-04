@@ -55,7 +55,7 @@ namespace POE_Task_2
 
         public override string ToString()
         {
-            return typeof(Mage).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
+            return typeof(Mage).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")   (Current HP = " + this.GetHP() + ")";
         }
     }
 }

@@ -24,13 +24,8 @@ namespace POE_Task_2
         private void Form1_Load(object sender, EventArgs e)
         {
             this.gameEngine = new GameEngine(20, 20, 20, 20, 3, 5);
-            txtDisplayGame.Text = gameEngine.ToString();
-            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
-            for (int i = 0; i < this.gameEngine.GetMap().GetEnemyArray().Length; i++)
-            {
-                txtEnemyStats.Text += this.gameEngine.GetMap().GetEnemyArray()[i].ToString() + System.Environment.NewLine;
-            }
-             
+            txtDisplayGame.Text = gameEngine.ToString();           
+            this.DisplayCharacterStats();
         }
 
         private void btnUp_Click(object sender, EventArgs e)
@@ -39,10 +34,7 @@ namespace POE_Task_2
             this.gameEngine.MovePlayer(MovementEnum.UP);
             this.gameEngine.MoveEnemies();
             txtDisplayGame.Text = gameEngine.ToString();
-            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
-
-           
-            
+            txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString(); 
         }
         private void btnDown_Click(object sender, EventArgs e)
         {
@@ -70,6 +62,48 @@ namespace POE_Task_2
             txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
         }
 
-        
+        private void btnPlayerAttack_Click(object sender, EventArgs e)
+        {
+            Tile[] playerCharVision = this.gameEngine.GetMap().GetHero().GetCharacterVision();
+            for (int i = 0; i < playerCharVision.Length; i++)
+            {
+
+                if (playerCharVision[i].Equals(new EmptyTile (playerCharVision[i].getX(), playerCharVision[i].getY())) ||
+                    playerCharVision[i].Equals(new Obstacle(playerCharVision[i].getX(), playerCharVision[i].getY())) )
+                {
+                    continue;
+                }
+                this.gameEngine.GetMap().GetHero().Attack((Character)playerCharVision[i]);
+                
+            }
+            this.gameEngine.EnemyAttack();
+            this.DisplayCharacterStats();
+
+
+        }
+
+        private void DisplayCharacterStats()
+        {
+            txtPlayerStats.Text = "";
+            txtPlayerStats.Text = txtPlayerStats.Text = gameEngine.GetMap().GetHero().ToString();
+            txtEnemyStats.Text = "";
+            for (int i = 0; i < this.gameEngine.GetMap().GetEnemyArray().Length; i++)
+            {
+                txtEnemyStats.Text += this.gameEngine.GetMap().GetEnemyArray()[i].ToString() + System.Environment.NewLine;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.gameEngine.Save();
+            MessageBox.Show("Game sucessfully saved on file");
+            txtDisplayGame.Clear();
+        }
+
+        private void btnLoadGame_Click(object sender, EventArgs e)
+        {
+            
+            txtDisplayGame.Text = this.gameEngine.Load();
+        }
     }
 }

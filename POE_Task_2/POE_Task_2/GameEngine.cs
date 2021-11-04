@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace POE_Task_2
 {
+    [Serializable]
     public class GameEngine 
     {
         private Map map;
@@ -102,9 +105,9 @@ namespace POE_Task_2
             
             return this.map.ToString(); 
         }
-        private void MoveEnemy(Goblin goblin , MovementEnum direction)
+        private void MoveEnemy(Goblin goblin , MovementEnum move)
         {
-            MovementEnum move = this.map.GetHero().ReturnMove(direction);
+            
             if (move == MovementEnum.UP)
             {
                 int currentX = goblin.getX();
@@ -146,6 +149,7 @@ namespace POE_Task_2
                 this.map.UpdateVision();      
             }    
         }
+
         public void MoveEnemies()
         {
             
@@ -154,23 +158,58 @@ namespace POE_Task_2
                 if (this.map.GetEnemyArray()[i].GetType() == typeof(Goblin))
                 {
                     Random randomMove = new Random();
-                    MovementEnum  move = (MovementEnum)randomMove.Next(0, 5);
-
+                    MovementEnum  direction = (MovementEnum)randomMove.Next(0, 5);
+                    MovementEnum move = this.map.GetEnemyArray()[i].ReturnMove(direction);
                     this.MoveEnemy((Goblin)this.map.GetEnemyArray()[i], move);
                 }
             }
+            this.EnemyAttack();
         }
         public void EnemyAttack()
         {
+
          
             for (int i = 0; i < this.map.GetEnemyArray().Length; i++)
             {
-                for (int j = 0; j < this.map.GetEnemyArray()[i].GetCharacterVision().Length; j++)
+                Tile[] characterVision = this.map.GetEnemyArray()[i].GetCharacterVision();
+
+                for (int j = 0; j < characterVision.Length; j++)
                 {
-                    Character target = (Character)this.map.GetEnemyArray()[i].GetCharacterVision()[j];
+                    if (characterVision[j].Equals(new EmptyTile(characterVision[j].getX(), characterVision[j].getY())) ||
+                        characterVision[j].Equals(new Obstacle(characterVision[j].getX(), characterVision[j].getY()))  ||
+                        characterVision[j].Equals(new Gold(characterVision[j].getX(), characterVision[j].getY()))) 
+
+                    {
+                        continue;
+                    }
+                    Character target = (Character)characterVision[j];
                     this.map.GetEnemyArray()[i].Attack(target);
                 }   
             }
         }
+
+        public void Save()
+        {
+            string fileName = @"c:\users\tyrone the 4th\source\repos\poe_task2\poe_task_2\POE_Task_2\SaveGame.bin";
+            using (BinaryWriter binaryWriter = new BinaryWriter(new FileStream(fileName, FileMode.OpenOrCreate)))
+            {
+                binaryWriter.Write(this.ToString());
+            }      
+
+        }
+
+        public string Load()
+        {
+            string loadGame = "";
+            string fileName = @"c:\users\tyrone the 4th\source\repos\poe_task2\poe_task_2\POE_Task_2\SaveGame.bin";
+            if (File.Exists(fileName))
+            {
+                using (BinaryReader binaryReader = new BinaryReader(File.Open(fileName, FileMode.Open)))
+                {
+                    loadGame = binaryReader.ReadString();
+                }
+            }
+            return loadGame;
+        }      
     }
 }

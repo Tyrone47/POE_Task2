@@ -149,17 +149,17 @@ namespace POE_Task_2
             //update enemy vision
             for (int i = 0; i < this.enemyArray.Length; i++)
             {
-                 xPos = this.enemyArray[i].getX();
-                 yPos = this.enemyArray[i].getY();
+                 int enemyXPos = this.enemyArray[i].getX();
+                 int enemyYPos = this.enemyArray[i].getY();
 
                 //Up
-                this.enemyArray[i].SetCharacterVision(this.tileMap[xPos, yPos + 1], 0);
+                this.enemyArray[i].SetCharacterVision(this.tileMap[enemyXPos, enemyYPos + 1], 0);
                 //Down
-                this.enemyArray[i].SetCharacterVision(this.tileMap[xPos, yPos - 1], 1);
+                this.enemyArray[i].SetCharacterVision(this.tileMap[enemyXPos, enemyYPos - 1], 1);
                 //Left
-                this.enemyArray[i].SetCharacterVision(this.tileMap[xPos - 1, yPos ], 2);
+                this.enemyArray[i].SetCharacterVision(this.tileMap[enemyXPos - 1, enemyYPos], 2);
                 //Right
-                this.enemyArray[i].SetCharacterVision(this.tileMap[xPos + 1, yPos], 3);
+                this.enemyArray[i].SetCharacterVision(this.tileMap[enemyXPos + 1, enemyYPos], 3);
             }
             
         }
@@ -178,7 +178,7 @@ namespace POE_Task_2
                     int y = this.random.Next(1, this.height - 2);
                     if (this.tileMap[x, y].Equals (new EmptyTile(x, y)))
                     {
-                        tempHero = new Hero(x, y, 3, "H");
+                        tempHero = new Hero(x, y, 10, "H");
                         this.tileMap[x, y] = tempHero;
                         isHeroAssigned = true;
                     }

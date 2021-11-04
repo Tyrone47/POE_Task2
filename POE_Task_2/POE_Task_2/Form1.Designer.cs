@@ -36,6 +36,9 @@ namespace POE_Task_2
             this.txtDisplayGame = new System.Windows.Forms.TextBox();
             this.txtPlayerStats = new System.Windows.Forms.TextBox();
             this.txtEnemyStats = new System.Windows.Forms.TextBox();
+            this.btnPlayerAttack = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnLoadGame = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUp
@@ -102,11 +105,44 @@ namespace POE_Task_2
             this.txtEnemyStats.Size = new System.Drawing.Size(416, 163);
             this.txtEnemyStats.TabIndex = 9;
             // 
+            // btnPlayerAttack
+            // 
+            this.btnPlayerAttack.Location = new System.Drawing.Point(741, 492);
+            this.btnPlayerAttack.Name = "btnPlayerAttack";
+            this.btnPlayerAttack.Size = new System.Drawing.Size(94, 29);
+            this.btnPlayerAttack.TabIndex = 10;
+            this.btnPlayerAttack.Text = "Attack";
+            this.btnPlayerAttack.UseVisualStyleBackColor = true;
+            this.btnPlayerAttack.Click += new System.EventHandler(this.btnPlayerAttack_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(1094, 442);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(94, 41);
+            this.btnSave.TabIndex = 11;
+            this.btnSave.Text = "Save Game";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnLoadGame
+            // 
+            this.btnLoadGame.Location = new System.Drawing.Point(1094, 533);
+            this.btnLoadGame.Name = "btnLoadGame";
+            this.btnLoadGame.Size = new System.Drawing.Size(94, 41);
+            this.btnLoadGame.TabIndex = 12;
+            this.btnLoadGame.Text = "Load Game";
+            this.btnLoadGame.UseVisualStyleBackColor = true;
+            this.btnLoadGame.Click += new System.EventHandler(this.btnLoadGame_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 662);
+            this.Controls.Add(this.btnLoadGame);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnPlayerAttack);
             this.Controls.Add(this.txtEnemyStats);
             this.Controls.Add(this.txtPlayerStats);
             this.Controls.Add(this.txtDisplayGame);
@@ -130,6 +166,9 @@ namespace POE_Task_2
         private System.Windows.Forms.TextBox txtDisplayGame;
         private System.Windows.Forms.TextBox txtPlayerStats;
         private System.Windows.Forms.TextBox txtEnemyStats;
+        private System.Windows.Forms.Button btnPlayerAttack;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnLoadGame;
     }
 }
 

@@ -23,22 +23,25 @@ namespace POE_Task_2
             do
             {
                 movement = (MovementEnum)random.Next(0, 5);
-                if (movement == MovementEnum.UP && this.characterVision[this.y + 1].Equals(empty))
+                if (movement == MovementEnum.UP && this.characterVision[0].Equals( new EmptyTile(this.x,this.y + 1)) )
                 {
                     notFoundMovement = false;
                     
+                    
                 }
-                else if (movement == MovementEnum.DOWN && this.characterVision[this.y - 1 ].Equals(empty))
+                else if (movement == MovementEnum.DOWN && this.characterVision[1].Equals(new EmptyTile(this.x, this.y - 1)))
                 {
                     notFoundMovement = false;
                     
+
                 }
-                else if (movement == MovementEnum.LEFT && this.characterVision[this.x - 1].Equals(empty))
+                else if (movement == MovementEnum.LEFT && this.characterVision[2].Equals(new EmptyTile(this.x - 1, this.y)))
                 {
                     notFoundMovement = false;
                     
+
                 }
-                else if (movement == MovementEnum.RIGHT && this.characterVision[this.x].Equals(empty))
+                else if (movement == MovementEnum.RIGHT && this.characterVision[3].Equals(new EmptyTile(this.x + 1, this.y )))
                 {
                     notFoundMovement = false;
                     
@@ -59,7 +62,7 @@ namespace POE_Task_2
 
         public override string ToString()
         {
-            return typeof(Goblin).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ")";
+            return typeof(Goblin).Name + " at[ " + this.x + "," + this.y + "] (Amount DMG = " + this.damage + ") (Current HP = " + this.GetHP() + ")";
         }
     }
 }

@@ -12,7 +12,7 @@ namespace POE_Task_2
         {
             this.damage = damage;
             this.maxHP = maxHP;
-
+            this.HP = maxHP;
         }
         public override string ToString()
         {
